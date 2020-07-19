@@ -25,3 +25,4 @@ def admin():
 def update():
     flights=db.execute("select * from flights").fetchall()
     return render_template("update.html",flights=flights)
+    print("FLIGHTS ADDED SUCCESSFULLY")
