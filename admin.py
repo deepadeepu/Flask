@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,redirect
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session,sessionmaker
 
@@ -19,6 +19,7 @@ def admin():
         db.execute("insert into flights (origin,destination,duration) values (:origin, :destination, :duration)",
              {"origin":origin,"destination":destination,"duration":duration})
         db.commit()
+        return redirect('update')
     return render_template("admin.html", origin=origin,destination=destination,duration=duration)
 
 @app.route('/update',methods=['GET', 'POST'])
